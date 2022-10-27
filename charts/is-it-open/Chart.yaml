@@ -1,0 +1,6 @@
+apiVersion: v2
+name: is-it-open
+description: Check if destination is reachable
+type: application
+version: 0.1.0
+appVersion: "0.0.1"
