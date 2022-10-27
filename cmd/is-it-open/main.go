@@ -1,12 +1,13 @@
 package main
 
 import (
-  "net/http"
-  "github.com/labstack/echo/v4"
+	"net/http"
+
+	"github.com/labstack/echo/v4"
 )
 
 type Endpoint struct {
-	Url  string `json:"url"`
+  Url string `json:"url"`
 }
 
 func main() {
@@ -14,13 +15,13 @@ func main() {
   e.POST("/v1/open", func(c echo.Context) error {
     endpoint := new(Endpoint)
     if err := c.Bind(endpoint); err != nil {
-      return err
+      return c.String(http.StatusInternalServerError, err.Error())
     }
 
     // try request to url
     resp, err := http.Get(endpoint.Url)
     if err != nil {
-       return err
+      return c.String(http.StatusInternalServerError, err.Error())
     }
 
     return c.String(http.StatusOK, resp.Status)
