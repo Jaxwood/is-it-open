@@ -8,10 +8,10 @@ RUN go mod download
 
 COPY . .
 
-RUN ls cmd/is-it-open
 RUN go build -o ./is-it-open cmd/is-it-open/main.go
 
 EXPOSE 1323
+USER 1337
 
 CMD [ "./is-it-open" ]
 
